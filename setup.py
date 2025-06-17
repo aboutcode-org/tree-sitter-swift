@@ -14,13 +14,6 @@ class Build(build):
         super().run()
 
 
-class BdistWheel(bdist_wheel):
-    def get_tag(self):
-        python, abi, platform = super().get_tag()
-        abi = "abi3"
-        return python, abi, platform
-
-
 setup(
     packages=find_packages("bindings/python"),
     package_dir={"": "bindings/python"},
@@ -51,7 +44,7 @@ setup(
     ],
     cmdclass={
         "build": Build,
-        "bdist_wheel": BdistWheel
+        "bdist_wheel": bdist_wheel
     },
     zip_safe=False
 )
